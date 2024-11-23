@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Products;
+namespace App\Products\Http\Controllers;
 
-use App\Models\Products\Product;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Products\StoreProductRequest;
-use GuzzleHttp\Psr7\Request;
+use App\Products\Models\Product;
+use  App\Products\Http\Controllers\Controller;
+use App\Products\Http\Requests\StoreProductRequest;
 
 class ProductController extends Controller
 {
@@ -38,6 +37,7 @@ class ProductController extends Controller
             return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
         }
     }
+
     /**
      * Display the specified product.
      * @param int $id
@@ -63,7 +63,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function update(Request $request, $id)
+    public function update(StoreProductRequest $request, $id)
     {
         try {
             $product = Product::find($id);
