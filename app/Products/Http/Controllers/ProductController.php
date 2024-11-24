@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         try {
             $products = Product::all();
-            return response()->json($products, 200);
+            return response()->json(['data' => $products, 'message' => "operación ejecutada correctamente"], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
         }
@@ -31,8 +31,8 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         try {
-            Product::create($request->validated());
-            return response()->json(['message' => 'Producto creado exitosamente'], 200);
+            $product = Product::create($request->validated());
+            return response()->json(['data' => $product, 'message' => "Producto creado correctamente  "], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
         }
@@ -48,7 +48,8 @@ class ProductController extends Controller
         try {
             $product = Product::find($id);
             if ($product) {
-                return response()->json($product, 200);
+                return response()->json(['data' => $product, 'message' => "operación ejecutada correctamente"], 200);
+
             } else {
                 return response()->json(['message' => 'Producto no encontrado'], 404);
             }
@@ -69,7 +70,7 @@ class ProductController extends Controller
             $product = Product::find($id);
             if ($product) {
                 $product->update($request->validated());
-                return response()->json(['message' => 'Producto actualizado exitosamente'], 200);
+                return response()->json(['data' => $product, 'message' => "Producto actualizado correctamente "], 200);
             } else {
                 return response()->json(['message' => 'Producto no encontrado'], 404);
             }
@@ -90,9 +91,10 @@ class ProductController extends Controller
             $product = Product::find($id);
             if ($product) {
                 $product->delete();
-                return response()->json(['message' => 'Product deleted successfully'], 200);
+                return response()->json(['data' => $product, 'message' => "Producto eliminado correctamente "], 200);
+
             } else {
-                return response()->json(['message' => 'Product not found'], 404);
+                return response()->json(['message' => 'Producto no encontrado'], 404);
             }
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);

@@ -1,6 +1,3 @@
-# Prueba_T-cnica_Linktic-
-Este es el repositorio de la Prueba Técnica de Backend - Nivel Medio
-
 
 # 1 Construir y Ejecutar el Contenedor 🚀  
 1.1 Construye los contenedores (Obligatorio): 
@@ -28,22 +25,34 @@ Este es el repositorio de la Prueba Técnica de Backend - Nivel Medio
   docker-compose exec app php artisan migrate
   ~~~
 
-## Ejecutar migraciones
-  Paso 1. Ingresar a la consola de comandos de laravel tinker: 
+
+ ## Prebuilt Components/Templates 🔥  
+
   ~~~bash  
-  docker-compose exec app php artisan tinker
+  /users:
+  get:
+    summary: Obtiene una lista de usuarios
+    description: Retorna una lista de todos los usuarios registrados.
+    responses:
+      '200':
+        description: Lista de usuarios
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+
   ~~~
-  Paso 2.
- ~~~bash  
-  
-  ~~~
+
+
+
 
   ## Get Started  
   To get started, hit the 'clear' button at the top of the editor!  
   
-  ## Prebuilt Components/Templates 🔥  
-  You can checkout prebuilt components and templates by clicking on the 'Add Section' button or menu icon
-  on the top left corner of the navbar.
+ 
+ 
       
   ## Save Readme ✨  
   Once you're done, click on the save button to download and save your ReadMe!
