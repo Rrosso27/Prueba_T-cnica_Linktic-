@@ -1,0 +1,321 @@
+openapi: 3.0.3
+info:
+  title: API de Productos y Órdenes
+  description: API para gestionar productos y órdenes.
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:8000/api
+
+paths:
+  /products/:
+    get:
+      summary: Obtener todos los productos
+      description: Recupera la lista de todos los productos disponibles.
+      responses:
+        "200":
+          message: Lista de productos obtenida exitosamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    price:
+                      type: number
+                      format: float
+                    stock:
+                      type: integer
+        "500":
+          message: Error del servidor'
+
+    post:
+      summary: Crear un nuevo producto
+      description: Agrega un producto a la base de datos.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                  format: float
+                stock:
+                  type: integer
+              required: [name, price, stock]
+      responses:
+        "201":
+          message: Producto creado exitosamente.
+        "500":
+          message: Error del servidor
+
+  /products/{id}/:
+    get:
+      summary: Mostrar un producto
+      description: Recupera los detalles de un producto específico.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          message: Detalles del producto obtenidos exitosamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    price:
+                      type: number
+                      format: float
+                    stock:
+                      type: integer
+        "400":
+          message: Producto no encontrado"
+        "500":
+          message: Error del servidor
+    put:
+      summary: Actualizar un producto
+      description: Modifica los datos de un producto existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                  format: float
+                stock:
+                  type: integer
+              required: [name, price, stock]
+      responses:
+        "200":
+          message: Producto actualizado exitosamente.
+        "500":
+          message: Error del servidor"
+    delete:
+      summary: Eliminar un producto
+      message: Elimina un producto específico.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          message: Producto eliminado exitosamente.
+        "400":
+          message: Producto no encontrado
+        "500":
+          message: Error del servidor
+
+  /orders/:
+    get:
+      summary: Obtener todas las órdenes
+      description: Recupera la lista de todas las órdenes.
+      responses:
+        "200":
+          message: Lista de órdenes obtenida exitosamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    status:
+                      type: string
+                    total_amount:
+                      type: number
+                      format: float
+                    payment_status:
+                      type: string
+        "500":
+          message: Error del servidor"
+    post:
+      summary: Crear una nueva orden
+      description: Agrega una orden a la base de datos.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                total_amount:
+                  type: number
+                  format: float
+                payment_status:
+                  type: string
+                payment_method:
+                  type: string
+                shipping_address:
+                  type: string
+                billing_address:
+                  type: string
+                shipping_fee:
+                  type: number
+                  format: float
+                discount:
+                  type: number
+                  format: float
+                notes:
+                  type: string
+                product_id:
+                  type: integer
+                total_price:
+                  type: string
+              required:
+                [status, total_amount, payment_status, product_id, total_price]
+      responses:
+        "201":
+          message: Orden creada exitosamente.
+        "500":
+          message: Error del servidor
+
+  /orders/{id}/:
+    get:
+      summary: Mostrar una orden
+      description: Recupera los detalles de una orden específica.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          message: Detalles de la orden obtenidos exitosamente.
+          content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                status:
+                  type: string
+                total_amount:
+                  type: number
+                  format: float
+                payment_status:
+                  type: string
+                payment_method:
+                  type: string
+                shipping_address:
+                  type: string
+                billing_address:
+                  type: string
+                shipping_fee:
+                  type: number
+                  format: float
+                discount:
+                  type: number
+                  format: float
+                notes:
+                  type: string
+                product_id:
+                  type: integer
+                total_price:
+                  type: string
+        "404":
+          message: Orden no encontrada
+        "500":
+          message: Error del servidor
+    put:
+      summary: Actualizar una orden
+      description: Modifica los datos de una orden existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                total_amount:
+                  type: number
+                  format: float
+                payment_status:
+                  type: string
+                payment_method:
+                  type: string
+                shipping_address:
+                  type: string
+                billing_address:
+                  type: string
+                shipping_fee:
+                  type: number
+                  format: float
+                discount:
+                  type: number
+                  format: float
+                notes:
+                  type: string
+                product_id:
+                  type: integer
+                total_price:
+                  type: string
+              required:
+                [status, total_amount, payment_status, product_id, total_price]
+      responses:
+        "200":
+          message: Orden actualizada exitosamente.
+        "404":
+          message: Orden no encontrada
+        "500":
+          message: Error del servidor
+    delete:
+      summary: Eliminar una orden
+      description: Elimina una orden específica.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          message: Orden eliminada exitosamente.
+        "404":
+          message: Orden no encontrada
+        "500":
+          message: Error del servidor
