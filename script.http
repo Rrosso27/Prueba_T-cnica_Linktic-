@@ -61,6 +61,7 @@ GET {{url}}/orders/1/ HTTP/1.1
 ### update a order
 PUT {{url}}/orders/1/ HTTP/1.1
 content-type: application/json
+bearer token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjIwNjYwNjY5LCJlbWFpbCI6ImFkbWluQG1haWwuY29tIn0.1J9Z6
 
 {
         "status":"completed",

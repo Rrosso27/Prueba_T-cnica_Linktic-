@@ -12,13 +12,13 @@ class OrdersController extends Controller
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
-     * 
+     *
      */
     public function index()
     {
         try {
             $orders = Orders::all();
-            return response()->json(['data' => $orders, 'message' => "operación ejecutada correctamente"], 200);
+            return response()->json([ 'message' => "Lista de órdenes obtenida exitosamente" , 'content' => $orders], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
@@ -38,7 +38,7 @@ class OrdersController extends Controller
                 'total_price' => $request->total_price
             ]);
 
-            return response()->json(['data' => $orderItems, 'message' => 'Orden creada correctamente'], 200);
+            return response()->json(['message' => ' Orden creada exitosamente'], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
@@ -56,7 +56,7 @@ class OrdersController extends Controller
 
 
             if ($order) {
-                return response()->json(['data' => $order->id, 'message' => 'Operación ejecutada correctamente'], 200);
+                return response()->json([ 'message' => 'Detalles de la orden obtenidos exitosamente.', 'content' => $order], 200);
             } else {
                 return response()->json(['message' => 'Orden no encontrada'], 404);
             }
@@ -76,7 +76,7 @@ class OrdersController extends Controller
             $order = Orders::find($id);
             if ($order) {
                 $order->update($request->all());
-                return response()->json(['data' => $order, 'message' => 'Orden actualizada correctamente'], 200);
+                return response()->json(['message' => 'Orden actualizada exitosamente'], 200);
             } else {
                 return response()->json(['message' => 'Orden no encontrada'], 404);
             }
@@ -95,7 +95,7 @@ class OrdersController extends Controller
             $order = Orders::find($id);
             if ($order) {
                 $order->delete();
-                return response()->json(['message' => 'Orden eliminada correctamente'], 200);
+                return response()->json(['message' => 'Orden eliminada correctamente'], 204);
             } else {
                 return response()->json(['message' => 'Orden no encontrada'], 404);
             }
