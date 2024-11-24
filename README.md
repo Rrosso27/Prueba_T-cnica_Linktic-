@@ -1,17 +1,17 @@
 
 #  Construir y Ejecutar el Contenedor  
     1.1 Construye los contenedores (Obligatorio): 
-    ~~~bash  
+  ~~~bash  
         docker-compose build
-    ~~~
+  ~~~
     1.2 .Inicia los servicios (Obligatorio): 
-    ~~~bash  
+  ~~~bash  
         docker-compose up -d
-    ~~~
+  ~~~
     1.3 .Verifica que los contenedores estén corriendo. Este paso no es obligatorio
-    ~~~bash  
+  ~~~bash  
         docker ps
-    ~~~
+  ~~~
 
 # Generar laravel key
   .Usa el siguiente comando para generar la Application Key de Laravel: 
