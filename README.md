@@ -19,6 +19,13 @@
   docker-compose exec app  php artisan key:generate
   ~~~
 
+# Generar la clave secreta de JWT
+  .Usa el siguiente comando para generar la Application Key de Laravel: 
+  ~~~bash  
+  docker-compose exec app php artisan jwt:secret
+  ~~~
+
+
 #  Especificaciones técnicas de las tablas 
    [ Especificaciones técnicas](https://docs.google.com/document/d/1vk9SmsyMqpxX3pX6C6pW32tMuKqWLi7Edxdit0FxJP8/edit?tab=t.0)
 

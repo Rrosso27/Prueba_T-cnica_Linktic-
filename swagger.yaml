@@ -7,10 +7,79 @@ servers:
   - url: http://127.0.0.1:8000/api
 
 paths:
+  /register:
+    post:
+      summary: Register a user
+      description: Create a new user account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+              required:
+                - name
+                - email
+                - password
+      responses:
+        201:
+          description: User registered successfully.
+        400:
+          description: Bad Request.
+
+  /login:
+    post:
+      summary: Login a user
+      description: Authenticate a user and return a token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+              required:
+                - email
+                - password
+      responses:
+        200:
+          description: User authenticated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        401:
+          description: Invalid credentials.
+
   /products/:
     get:
       summary: Obtener todos los productos
       description: Recupera la lista de todos los productos disponibles.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Bearer {{token}}
       responses:
         "200":
           message: Lista de productos obtenida exitosamente.
@@ -36,6 +105,13 @@ paths:
     post:
       summary: Crear un nuevo producto
       description: Agrega un producto a la base de datos.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Bearer {{token}}
       requestBody:
         required: true
         content:
@@ -61,12 +137,21 @@ paths:
     get:
       summary: Mostrar un producto
       description: Recupera los detalles de un producto específico.
+
+
       parameters:
+
         - name: id
           in: path
           required: true
           schema:
             type: integer
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Bearer {{token}}
       responses:
         "200":
           message: Detalles del producto obtenidos exitosamente.
@@ -99,6 +184,12 @@ paths:
           required: true
           schema:
             type: integer
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Bearer {{token}}
       requestBody:
         required: true
         content:
@@ -128,6 +219,12 @@ paths:
           required: true
           schema:
             type: integer
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Bearer {{token}}
       responses:
         "204":
           message: Producto eliminado exitosamente.
@@ -140,6 +237,13 @@ paths:
     get:
       summary: Obtener todas las órdenes
       description: Recupera la lista de todas las órdenes.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Bearer {{token}}
       responses:
         "200":
           message: Lista de órdenes obtenida exitosamente.
@@ -164,6 +268,13 @@ paths:
     post:
       summary: Crear una nueva orden
       description: Agrega una orden a la base de datos.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Bearer {{token}}
       requestBody:
         required: true
         content:
@@ -214,6 +325,12 @@ paths:
           required: true
           schema:
             type: integer
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Bearer {{token}}
       responses:
         "200":
           message: Detalles de la orden obtenidos exitosamente.
@@ -262,6 +379,12 @@ paths:
           required: true
           schema:
             type: integer
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Bearer {{token}}
       requestBody:
         required: true
         content:
@@ -312,6 +435,12 @@ paths:
           required: true
           schema:
             type: integer
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Bearer {{token}}
       responses:
         "204":
           message: Orden eliminada exitosamente.
