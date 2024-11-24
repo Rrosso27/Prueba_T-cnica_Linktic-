@@ -448,3 +448,30 @@ paths:
           message: Orden no encontrada
         "500":
           message: Error del servidor
+  /products/export/:
+    get:
+      summary: Exportar productos a un archivo Excel
+      description: Descarga un archivo Excel con la lista de productos disponibles en el sistema.
+      tags:
+        - Productos
+      operationId: exportProducts
+      parameters:
+        - name: Authorization
+          in: header
+          description: Token de autorización JWT para acceder al recurso.
+          required: true
+          schema:
+            type: string
+            example: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+      responses:
+        '200':
+          description: Archivo Excel descargado exitosamente.
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+              examples:
+                success:
+                  summary: Descarga Products.xlsx
+

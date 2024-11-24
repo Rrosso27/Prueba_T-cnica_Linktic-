@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Products\Http\Controllers\ProductController;
-use App\Orders\Http\Controllers\OrdersController;
+use App\Products\Exports\ProductsExport;
 use  App\Auth\Http\Controllers\AuthController;
+use App\Orders\Http\Controllers\OrdersController;
+use App\Products\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +33,15 @@ Route::middleware('auth.jwt')->group(function () {
             return response()->json(['version' => '1.0.0']);
         });
         Route::get('/',  [ProductController::class, 'index']);
+        Route::get('/export',  [ProductController::class, 'export']);
         Route::post('/',  [ProductController::class, 'store']);
         Route::get('{id}', [ProductController::class, 'show']);
         Route::put('{id}', [ProductController::class, 'update']);
         Route::delete('{id}', [ProductController::class, 'destroy']);
+
+
     });
+
 
     // Rutas de órdenes
     Route::prefix('orders')->group(function () {
@@ -46,4 +51,6 @@ Route::middleware('auth.jwt')->group(function () {
         Route::put('{id}', [OrdersController::class, 'update']);
         Route::delete('{id}', [OrdersController::class, 'destroy']);
     });
+
+
 });

@@ -9,8 +9,8 @@ POST {{url}}/register/ HTTP/1.1
 content-type: application/json
 
 {
-    "name":"admin3",
-    "email":"admin3@admin.com",
+    "name":"nicolas2",
+    "email":"nicolas2@admin.com",
     "password":"12345678"
 }
 
@@ -19,9 +19,14 @@ POST {{url}}/login/ HTTP/1.1
 content-type: application/json
 
 {
-   "email":"admin@admin.com",
+   "email":"nicolas2@admin.com",
     "password":"12345678"
 }
+
+### export a product
+GET {{url}}/products/export/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
 
 ### Get all products

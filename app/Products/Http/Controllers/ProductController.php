@@ -3,8 +3,10 @@
 namespace App\Products\Http\Controllers;
 
 use App\Products\Models\Product;
+use App\Products\Exports\ProductsExport;
 use  App\Products\Http\Controllers\Controller;
 use App\Products\Http\Requests\StoreProductRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -97,5 +99,14 @@ class ProductController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
         }
+    }
+
+    /**
+     * Export products to excel
+     * @return \Illuminate\Http\Response
+     */
+    public function export()
+    {
+        return Excel::download(new ProductsExport, 'Products.xlsx');
     }
 }
