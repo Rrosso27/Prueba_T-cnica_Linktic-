@@ -24,14 +24,14 @@ Route::post('register', [AuthController::class, 'register']);
 Route::middleware('auth.jwt')->get('user', [AuthController::class, 'getUser']);
 
 
-
+Route::get('/version', function () {
+    return response()->json(['version' => '1.0.10']);
+});
 
 Route::middleware('auth.jwt')->group(function () {
     // Rutas de productos
     Route::prefix('products')->group(function () {
-        Route::get('/version', function () {
-            return response()->json(['version' => '1.0.0']);
-        });
+
         Route::get('/',  [ProductController::class, 'index']);
         Route::get('/export',  [ProductController::class, 'export']);
         Route::post('/',  [ProductController::class, 'store']);
