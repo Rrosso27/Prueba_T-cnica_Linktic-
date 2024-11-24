@@ -25,6 +25,19 @@
   docker-compose exec app php artisan jwt:secret
   ~~~
 
+  # Verifica que el servicio está funcionando 
+  Ingresa a esta URL  [ http://localhost:8000/]( http://localhost:8000/) y valida que la vista de bienvenida de Laravel cargue correctamente 
+  
+  Otra forma de validar que el servicio se ejecute correctamente es ejecutar una petición GET en Postman con esta URL:
+  ~~~bash  
+  http://localhost:8000/api/version
+  ~~~
+  La respuesta del servicio debe ser la siguiente
+  ~~~bash  
+  {
+  "version": "1.0.10"
+  } 
+  ~~~
 
 #  Especificaciones técnicas de las tablas 
    [ Especificaciones técnicas](https://docs.google.com/document/d/1vk9SmsyMqpxX3pX6C6pW32tMuKqWLi7Edxdit0FxJP8/edit?tab=t.0)
@@ -62,6 +75,3 @@
   ~~~
  
  
-      
-  
-  
