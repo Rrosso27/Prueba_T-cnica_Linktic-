@@ -1,14 +1,14 @@
 
 #  Construir y Ejecutar el Contenedor  
-    1.1 Construye los contenedores (Obligatorio): 
+  1.1 Construye los contenedores (Obligatorio): 
   ~~~bash  
         docker-compose build
   ~~~
-    1.2 .Inicia los servicios (Obligatorio): 
+  1.2 .Inicia los servicios (Obligatorio): 
   ~~~bash  
         docker-compose up -d
   ~~~
-    1.3 .Verifica que los contenedores estén corriendo. Este paso no es obligatorio
+  1.3 .Verifica que los contenedores estén corriendo. Este paso no es obligatorio
   ~~~bash  
         docker ps
   ~~~
