@@ -35,7 +35,7 @@
   La respuesta del servicio debe ser la siguiente
   ~~~bash  
   {
-  "version": "1.0.10"
+  "version": "1.0.14"
   } 
   ~~~
 
@@ -48,13 +48,6 @@
   docker-compose exec app php artisan migrate
   ~~~
 
-## Remover contenedores.  
-  To get started, hit the 'clear' button at the top of the editor!  
-  
-  Generar tablas: 
-  ~~~bash  
-  docker-compose exec app php artisan migrate
-  ~~~
 
 ## Documentación de los servicios en Swagger
   

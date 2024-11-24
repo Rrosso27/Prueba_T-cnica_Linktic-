@@ -25,7 +25,7 @@ Route::middleware('auth.jwt')->get('user', [AuthController::class, 'getUser']);
 
 
 Route::get('/version', function () {
-    return response()->json(['version' => '1.0.13']);
+    return response()->json(['version' => '1.0.14']);
 });
 
 Route::middleware('auth.jwt')->group(function () {
