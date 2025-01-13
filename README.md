@@ -17,7 +17,7 @@
 # Instalar composer
   .Utiliza el siguiente comando para instalar Composer:
   ~~~bash  
-  docker-compose exec app  php artisan key:generate
+  docker-compose exec app composer install
   ~~~
 
 # Generar laravel key
@@ -42,7 +42,7 @@
   La respuesta del servicio debe ser la siguiente
   ~~~bash  
   {
-  "version": "1.0.14"
+  "version": "1.0.25"
   } 
   ~~~
 
