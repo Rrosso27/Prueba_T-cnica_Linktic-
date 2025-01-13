@@ -13,6 +13,13 @@
         docker ps
   ~~~
 
+
+# Instalar composer
+  .Utiliza el siguiente comando para instalar Composer:
+  ~~~bash  
+  docker-compose exec app  php artisan key:generate
+  ~~~
+
 # Generar laravel key
   .Usa el siguiente comando para generar la Application Key de Laravel: 
   ~~~bash  
